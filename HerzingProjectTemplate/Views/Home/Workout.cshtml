@@ -9,38 +9,36 @@
     <div class="sidebar"> @* /*SideBar*/ *@
         <div class="sidebar-content">
 
-            @for (int i = 0; i < Model.SelectedExercises.Count; i++)
+            @if (Model?.SelectedExercises?.Count >0)
             {
-                <div>
-                    <input asp-for="SelectedExercises[i]" class="form-control" />
-                    <span>@Model.SelectedExercises[i]</span>
-                </div>
+                @foreach (var exercise in Model.SelectedExercises)
+                {
+                    <div><span>@exercise</span></div>
+                }
             }
+           
             
             <form action="/" method="post" id="sidebar-form"> 
                 <div class="">
-                    <label asp-for="SelectedWorkoutType" class="sidebar-div-text" for="Resistancetraining">Resistance Training</label> @* /*Resistance training*/ *@
-                    <input type="radio" asp-for="SelectedWorkoutType" id="Resistancetraining" value="Resistance Training" name="workout-type" /><br />
+                    <label class="sidebar-div-text" for="Resistancetraining">Resistance Training</label> @* /*Resistance training*/ *@
+                    <input type="radio" id="Resistancetraining" value="Resistance Training" name="SelectedExercises" /><br />
                     <img class="exercise-icon" src="~/images/Dumbell.png" alt="resistance" />
-                    <span asp-validation-for="SelectedWorkoutType"></span>
                 </div>
             <br />
             <hr />
             <br />
                 <div class="">
-                    <label asp-for="SelectedWorkoutType" for="Endurancetraining">Endurance Training</label> @* /*Endurance training*/ *@
-                    <input type="radio" asp-for="SelectedWorkoutType" id="Endurancetraining" value="Endurance Training" name="workout-type" /><br />
+                    <label for="Endurancetraining">Endurance Training</label> @* /*Endurance training*/ *@
+                    <input type="radio" id="Endurancetraining" value="Endurance Training" name="SelectedExercises" /><br />
                     <img class="exercise-icon" src="~/images/endurance.png" alt="endurance" />
-                    <span asp-validation-for="SelectedWorkoutType"></span>
                 </div>
             <br />
             <hr />
             <br />
                 <div class="">
-                    <label asp-for="SelectedWorkoutType" for="BodyWeightTraining">Body Weight Training</label> @* /*Body Weight training*/ *@
-                    <input type="radio" asp-for="SelectedWorkoutType" id="BodyWeightTraining" value="Body Weight Training" name="workout-type" /><br />
+                    <label for="BodyWeightTraining">Body Weight Training</label> @* /*Body Weight training*/ *@
+                    <input type="radio" id="BodyWeightTraining" value="Body Weight Training" name="SelectedExercises" /><br />
                     <img class="exercise-icon" src="~/images/pushup.png" alt="body-weight" />
-                    <span asp-validation-for="SelectedWorkoutType"></span>
                 </div>
             </form>
         </div>
@@ -60,6 +58,8 @@
                 </svg>
             </div>
         </div>
+
+        <div id="my_content"></div>
        
         <div class="workout-cards1" id="workout-cards1" style="display:none;">@* /*Resistance training*/ *@
             <div class="card" style="width: 18rem;">
@@ -74,9 +74,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat(B)"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat(B)" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat(B)"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat(B)" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Learn proper depth, bracing, and bar path while using manageable loads.<br />
                                 <b>Reps:</b> 3 x 8 - 10 <br />
@@ -84,13 +83,11 @@
                             </div>
                         </div>
 
-
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress(B)"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress(B)" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress(B)"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress(B)" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build foundational pressing strength and shoulder stability.<br />
                                 <b>Reps:</b> 3 x 10 - 12 <br />
@@ -101,9 +98,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow(B)"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow(B)" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow(B)"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow(B)" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Introduce hip hinge stability while strengthening the upper back.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -114,9 +110,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift(B)"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift(B)" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift(B)"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift(B)" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Learn the hip hinge pattern with controlled tempo and light loads.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -127,9 +122,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress(B)"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress(B)" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress(B)"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress(B)" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build overhead pressing strength with support from the seatback.<br />
                                 <b>Reps:</b> 3 x 10 - 12<br />
@@ -153,9 +147,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat(I)"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat(I)" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat(I)"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat(I)" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase load, refine depth, and improve bar speed.<br />
                                 <b>Reps:</b> 4 × 6–8 <br />
@@ -166,9 +159,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress(I)"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress(I)" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress(I)"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress(I)" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Use heavier dumbbells and maintain tight form under load.<br />
                                 <b>Reps:</b> 4 × 8–10 <br />
@@ -179,9 +171,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow(I)"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow(I)" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow(I)"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow(I)" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Strengthen lats and upper back with stricter torso control.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -192,9 +183,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift(I)"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift(I)" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift(I)"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift(I)" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase posterior chain strength with heavier loads and full hip extension.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -205,9 +195,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress(I)"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress(I)" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress(I)"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress(I)" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Push moderate-to-heavy loads with controlled tempo.<br />
                                 <b>Reps:</b> 4 × 8–10<br />
@@ -232,9 +221,8 @@
                     <form action="/"
                             method="post">
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat(A)"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat(A)" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat(A)"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat(A)" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Train with high loads, explosive intent, and precise technique.<br />
                                 <b>Reps:</b> 5 × 3–5 <br />
@@ -245,9 +233,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress(A)"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress(A)" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress(A)"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress(A)" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy pressing with full ROM and strong scapular control.<br />
                                 <b>Reps:</b> 5 × 6–8 <br />
@@ -258,9 +245,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow(A)"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow(A)" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow(A)"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow(A)" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy rows emphasizing power, lat engagement, and torso rigidity.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -271,9 +257,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift(A)"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift(A)" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift(A)"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift(A)" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> High-load hinge work with maximal hamstring tension and hip drive.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -284,9 +269,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress(A)"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress(A)" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress(A)"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress(A)" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy overhead pressing with strict form and controlled lockout.<br />
                                 <b>Reps:</b> 5 × 6–8<br />
@@ -313,9 +297,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_EB"><b>Foundation Strength Circuit</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_EB" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_EB"><b>Foundation Strength Circuit</b></label>
+                            <input type="checkbox" id="BarbellSquat_EB" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Introduces basic movement patterns—push, pull, squat, hinge, and core stability (2-3 rounds each).<br />
                                 <b>Reps:</b> 3 x 8 - 10 <br />
@@ -327,9 +310,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_EB"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_EB" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_EB"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_EB" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build foundational pressing strength and shoulder stability.<br />
                                 <b>Reps:</b> 3 x 10 - 12 <br />
@@ -340,9 +322,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_EB"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_EB" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_EB"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_EB" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Introduce hip hinge stability while strengthening the upper back.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -353,9 +334,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_EB"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_EB" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_EB"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_EB" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Learn the hip hinge pattern with controlled tempo and light loads.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -366,9 +346,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_EB"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_EB" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_EB"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_EB" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build overhead pressing strength with support from the seatback.<br />
                                 <b>Reps:</b> 3 x 10 - 12<br />
@@ -392,9 +371,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_EI"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_EI" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_EI"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat_EI" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase load, refine depth, and improve bar speed.<br />
                                 <b>Reps:</b> 4 × 6–8 <br />
@@ -405,9 +383,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_EI"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_EI" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_EI"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_EI" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Use heavier dumbbells and maintain tight form under load.<br />
                                 <b>Reps:</b> 4 × 8–10 <br />
@@ -418,9 +395,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_EI"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_EI" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_EI"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_EI" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Strengthen lats and upper back with stricter torso control.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -431,9 +407,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_EI"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_EI" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_EI"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_EI" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase posterior chain strength with heavier loads and full hip extension.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -444,9 +419,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_EI"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_EI" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_EI"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_EI" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Push moderate-to-heavy loads with controlled tempo.<br />
                                 <b>Reps:</b> 4 × 8–10<br />
@@ -471,9 +445,8 @@
                     <form action="/"
                             method="post">
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_EA"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_EA" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_EA"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat_EA" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Train with high loads, explosive intent, and precise technique.<br />
                                 <b>Reps:</b> 5 × 3–5 <br />
@@ -484,9 +457,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_EA"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_EA" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_EA"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_EA" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy pressing with full ROM and strong scapular control.<br />
                                 <b>Reps:</b> 5 × 6–8 <br />
@@ -497,9 +469,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_EA"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_EA" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_EA"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_EA" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy rows emphasizing power, lat engagement, and torso rigidity.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -510,9 +481,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_EA"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_EA" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_EA"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_EA" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> High-load hinge work with maximal hamstring tension and hip drive.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -523,9 +493,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_EA"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_EA" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_EA"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_EA" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy overhead pressing with strict form and controlled lockout.<br />
                                 <b>Reps:</b> 5 × 6–8<br />
@@ -552,9 +521,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_BB"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_BB" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_BB"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat_BB" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Learn proper depth, bracing, and bar path while using manageable loads.<br />
                                 <b>Reps:</b> 3 x 8 - 10 <br />
@@ -566,9 +534,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_BB"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_BB" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_BB"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_BB" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build foundational pressing strength and shoulder stability.<br />
                                 <b>Reps:</b> 3 x 10 - 12 <br />
@@ -579,9 +546,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_BB"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_BB" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_BB"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_BB" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Introduce hip hinge stability while strengthening the upper back.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -592,9 +558,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_BB"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_BB" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_BB"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_BB" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Learn the hip hinge pattern with controlled tempo and light loads.<br />
                                 <b>Reps:</b> 3 x 8 - 10<br />
@@ -605,9 +570,8 @@
                         <hr />
 
                         <div class="inner-wrapper1">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_BB"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_BB" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_BB"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_BB" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Build overhead pressing strength with support from the seatback.<br />
                                 <b>Reps:</b> 3 x 10 - 12<br />
@@ -631,9 +595,8 @@
 
                     <form action="/" method="post">
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_BI"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_BI" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_BI"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat_BI" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase load, refine depth, and improve bar speed.<br />
                                 <b>Reps:</b> 4 × 6–8 <br />
@@ -644,9 +607,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_BI"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_BI" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_BI"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_BI" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Use heavier dumbbells and maintain tight form under load.<br />
                                 <b>Reps:</b> 4 × 8–10 <br />
@@ -657,9 +619,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_BI"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_BI" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_BI"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_BI" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Strengthen lats and upper back with stricter torso control.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -670,9 +631,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_BI"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_BI" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_BI"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_BI" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Increase posterior chain strength with heavier loads and full hip extension.<br />
                                 <b>Reps:</b> 4 × 6–8<br />
@@ -683,9 +643,8 @@
                         <hr />
 
                         <div class="inner-wrapper2">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_BI"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_BI" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_BI"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_BI" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Push moderate-to-heavy loads with controlled tempo.<br />
                                 <b>Reps:</b> 4 × 8–10<br />
@@ -710,9 +669,8 @@
                     <form action="/"
                             method="post">
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BarbellSquat_BA"><b>Barbell Squat</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BarbellSquat_BA" value="Barbell Squat" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BarbellSquat_BA"><b>Barbell Squat</b></label>
+                            <input type="checkbox" id="BarbellSquat_BA" value="Barbell Squat" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Train with high loads, explosive intent, and precise technique.<br />
                                 <b>Reps:</b> 5 × 3–5 <br />
@@ -723,9 +681,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="DumbbellBenchPress_BA"><b>Dumbbell Bench Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="DumbbellBenchPress_BA" value="Dumbbell Bench Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="DumbbellBenchPress_BA"><b>Dumbbell Bench Press</b></label>
+                            <input type="checkbox" id="DumbbellBenchPress_BA" value="Dumbbell Bench Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy pressing with full ROM and strong scapular control.<br />
                                 <b>Reps:</b> 5 × 6–8 <br />
@@ -736,9 +693,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="BentOverBarbellRow_BA"><b>Bent Over Barbell Row</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="BentOverBarbellRow_BA" value="Bent Over Barbell Row" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="BentOverBarbellRow_BA"><b>Bent Over Barbell Row</b></label>
+                            <input type="checkbox" id="BentOverBarbellRow_BA" value="Bent Over Barbell Row" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy rows emphasizing power, lat engagement, and torso rigidity.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -749,9 +705,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="RomanianDeadlift_BA"><b>Romanian Deadlift</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="RomanianDeadlift_BA" value="Romanian Deadlift" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="RomanianDeadlift_BA"><b>Romanian Deadlift</b></label>
+                            <input type="checkbox" id="RomanianDeadlift_BA" value="Romanian Deadlift" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> High-load hinge work with maximal hamstring tension and hip drive.<br />
                                 <b>Reps:</b> 5 × 5–6<br />
@@ -762,9 +717,8 @@
                         <hr />
 
                         <div class="inner-wrapper3">
-                            <label asp-for="SelectedExercises" class="collapse-label" for="SeatedDumbbellShoulderPress_BA"><b>Seated Dumbbell Shoulder Press</b></label>
-                            <input type="checkbox" asp-for="SelectedExercises" id="SeatedDumbbellShoulderPress_BA" value="Seated Dumbbell Shoulder Press" name="workout-type" class="collapse-content" /><br />
-                            <span asp-validation-for="SelectedExercises"></span>
+                            <label class="collapse-label" for="SeatedDumbbellShoulderPress_BA"><b>Seated Dumbbell Shoulder Press</b></label>
+                            <input type="checkbox" id="SeatedDumbbellShoulderPress_BA" value="Seated Dumbbell Shoulder Press" name="SelectedExercises" class="collapse-content" /><br />
                             <div class="collapse-div">
                                 <b>Description:</b> Heavy overhead pressing with strict form and controlled lockout.<br />
                                 <b>Reps:</b> 5 × 6–8<br />
@@ -800,7 +754,7 @@
               outputContainer.innerHTML = resistance.innerHTML;
           } else if (selectedValue === "Endurance Training") {
               outputContainer.innerHTML = endurance.innerHTML;
-          } else if (selectedValue === "BodyWeight Training") {
+          } else if (selectedValue === "Body Weight Training") {
               outputContainer.innerHTML = bodyWeight.innerHTML;
           } else {
               // Optional: Clear if a value doesn't match

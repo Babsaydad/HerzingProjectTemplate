@@ -50,6 +50,12 @@
     padding-top: 8px;
 }
 
+#my_content {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
 
 .collapse-div {
     display: none;
@@ -104,10 +110,10 @@
     border-radius: 50%;
 }
 
-/*.workout-cards1, .workout-cards2, .workout-cards3 {
+.workout-cards1, .workout-cards2, .workout-cards3 {
     display: flex;
     justify-content: space-evenly;
-}*/
+}
 
 .workout-card-images {
     width: 100%;
