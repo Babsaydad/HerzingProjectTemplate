@@ -1,0 +1,76 @@
+﻿body {
+    
+}
+
+#my_bg {
+    background-image: url('../images/slide1.jpg'); /* Adjust path as needed */
+    height: 100vh; /* Set a height to ensure the image displays */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-color: rgba(0, 0, 0, 0.6); /* Adds a 40% opaque black overlay */
+    background-blend-mode: overlay; /* Blends the color and image */
+}
+
+#home-page-title {
+    color: white;
+    justify-content: center;
+    align-content: center;
+}
+
+.niconne-regular {
+    font-family: "Niconne", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lobster-regular {
+    font-family: "Lobster", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.welcome-message {
+    color: white;
+    position: relative; 
+}
+
+.txt1 {
+    position: absolute;
+    top: 250px; /* 250px from the top of the container */
+    left: 80px; /* 600px from the left of the container */
+    height: 220px;
+    width: 620px;
+    /*background-color:;*/
+    border-radius: 50%;
+    
+}
+
+.txt-content {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 19px;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.txt2 {
+    position: absolute;
+    top: 350px;
+    left: 1030px;
+}
+
+.btn-home {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    margin-top: 10px;
+    background-color: red;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Adds an underline only when hovering */
+    color: black;
+    background-color: lightblue;
+}

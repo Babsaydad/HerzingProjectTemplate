@@ -1,0 +1,146 @@
+﻿body {
+    
+}
+
+.profile-container {
+    flex: auto;
+    width: 350px;
+    padding: 45px;
+    border: none;
+    border-radius: 15px;
+    margin: 20px;
+}
+
+/*.form-group {
+    margin-bottom: 15px;
+}*/
+
+.form1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #00bfff;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.form1 label {
+    position: relative;
+}
+
+.form1 label .input {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+.form1 label .input + span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form1 label .input:placeholder-shown + span {
+    top: 12.5px;
+    font-size: 0.9em;
+}
+
+.form1 label .input:focus + span,
+.form1 label .input:valid + span {
+    color: #00bfff;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.label {
+    align-self: flex-start;
+    color: var(--clr);
+    font-weight: 600;
+}
+
+.input {
+    font-size: medium;
+}
+
+
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/user-profile-bg.jpg'); /* Adjust path as needed */ 
+    height: 100vh; /* Set a height to ensure the image displays */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-color: rgba(0, 0, 0, 0.6); /* Adds a 40% opaque black overlay */
+    background-blend-mode: overlay; /* Blends the color and image */
+}
+
+
+.button2 {
+    padding: 15px 30px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    background: #FEFEFE;
+    cursor: pointer;
+    color: green;
+    box-shadow: 0 0 10px #363636, inset 0 0 10px #363636;
+}
+
+button2:hover {
+    animation: a 0.5s 1 linear;
+}
+
+@keyframes a {
+    0% {
+        transform: scale(0.7, 1.3);
+    }
+
+    25% {
+        transform: scale(1.3, 0.7);
+    }
+
+    50% {
+        transform: scale(0.7, 1.3);
+    }
+
+    75% {
+        transform: scale(1.3, 0.7);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+.profile-info {
+
+}
+
+.exercise-type-text {
+    font-size: 12px;
+}
+
+

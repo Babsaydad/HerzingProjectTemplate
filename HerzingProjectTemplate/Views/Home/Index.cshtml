@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    
+
+}
+
+<div class="text-center content-container">
+    <div class="background-slider-container">
+        <div class="slide" style="background-image: url('/images/slide1.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/slide5.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/slide6.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/slide7.jpg');"></div>
+        <div class="slide" style="background-image: url('/images/slide9.jpg');"></div>
+    </div>
+    <h1 class="display-4" id="home-page-title">Herzing College 
+        <span class="niconne-regular">Capstone Project</span> 
+        <span class="lobster-regular">- Fitness App</span>
+    </h1>
+
+    <div class="welcome-message">
+        <div class="txt1">
+            <h2>Welcome to the Starting Line</h2>
+            <p class="txt-content">
+                You’ve already done the hardest part: showing up. 
+                Whether you’re here to crush a new personal record, find a rhythm that sticks, or finally figure out what a "macro" actually is, 
+                you’re in the right place. We’re not about perfection; we’re about progress.
+                Take a look around, grab a plan, and let’s turn those "somedays" into Day One.
+            </p>
+        </div>
+        
+        <div class="txt2">
+            <a asp-controller="Home" asp-action="UserProfile" class="btn-home">Create a User Profile here!</a>
+        </div>
+    </div>
+</div>

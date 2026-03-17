@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Profile Information";
+}
+
+
+
+@model HerzingProjectTemplate.Models.UserProfileInfo
+
+<div class="profile">
+    <div class="profile-container">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Weight Lifting (Resistance Training)
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <b>Core idea:</b> Use external load (dumbbells, barbells, kettlebells, cables)
+                        to build strength, power, hypertrophy, or muscular endurance. Examples:
+                        <br /><br />
+                        <p class="exercise-type-text"><b>Compound lifts</b> — Multi joint movements that train large muscle groups (e.g., squats, deadlifts, bench press, overhead press).</p>
+                        <p class="exercise-type-text"><b>Isolation lifts</b> — Single joint movements targeting one muscle (e.g., bicep curls, tricep extensions, leg extensions).</p>
+                        <p class="exercise-type-text"><b>Power/Olympic lifts</b> — Explosive lifts for speed and power (e.g., cleans, snatches, jerks).</p>
+                        <p class="exercise-type-text"><b>Strength endurance lifting</b> — Moderate load, high reps, continuous sets.</p>
+                        <p class="exercise-type-text"><b>Functional resistance training</b> — Kettlebells, sandbags, medicine balls, movement based strength.</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Endurance Training (Cardio & Stamina)
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <b>Core idea:</b> Improve the body’s ability to sustain activity over time—heart, lungs, and muscular endurance. Examples:
+                        <br /><br />
+                        <p class="exercise-type-text"><b>Aerobic steady state</b> — Running, cycling, swimming, rowing at a consistent pace.</p>
+                        <p class="exercise-type-text"><b>Anaerobic intervals</b> — Short bursts of high intensity with rest periods.</p>
+                        <p class="exercise-type-text"><b>Tempo / threshold training</b> — Sustained moderate hard effort to raise lactate threshold.</p>
+                        <p class="exercise-type-text"><b>Long slow distance</b> — Longer sessions at easy pace for base building.</p>
+                        <p class="exercise-type-text"><b>Sport specific endurance</b> — Running endurance, combat sport conditioning, agility endurance.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Body Weight Training (Calisthenics)
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <b>Core idea:</b> Use external load (dumbbells, barbells, kettlebells, cables)
+                        to build strength, power, hypertrophy, or muscular endurance. Examples:
+                        <br /><br />
+                        <p class="exercise-type-text"><b>Fundamental movements</b> — Push ups, squats, lunges, planks, glute bridges.</p>
+                        <p class="exercise-type-text"><b>Calisthenics strength</b> — Pull ups, dips, muscle ups, handstands, levers.</p>
+                        <p class="exercise-type-text"><b>Body weight</b> — Burpees, mountain climbers, jump squats, high knees.</p>
+                        <p class="exercise-type-text"><b>Mobility strength hybrids</b> — Animal flow, bear crawls, crab walks.</p>
+                        <p class="exercise-type-text"><b>Core focused body weight work</b> — Leg raises, hollow holds, side planks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-container">
+        
+        <form asp-action="Input" method="post" class="form1">
+            
+            <div class="flex">
+                <label asp-for="FirstName" class="label">
+                    First Name:
+                    <input asp-for="FirstName" class="input" />
+                    <span asp-validation-for="FirstName"></span>
+                </label>
+
+                <label asp-for="LastName" class="label">
+                    Last Name:
+                    <input asp-for="LastName" class="input" />
+                    <span asp-validation-for="LastName"></span>
+                </label>
+            </div>
+
+            <div>
+                <label asp-for="Weight" class="label">
+                    Weight:
+                    <input asp-for="Weight" class="input" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </label>
+            </div>
+
+            <div>
+                <label asp-for="Height" class="label">
+                    Height:
+                    <input asp-for="Height" class="input" />
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </label>
+            </div>
+
+            <div>
+                <label asp-for="Age" class="label">Age:
+                    <input asp-for="Age" class="input" />
+                </label>
+            </div>
+
+            <div>
+                <label asp-for="Gender" class="label">Gender:</label>
+                <select asp-for="Gender" class="input">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="ExerciseMode" class="label">Exercise Mode:</label>
+                    <select asp-for="ExerciseMode" class="input">
+                        <option>Resistance training (Weight lifting)</option>
+                        <option>Endurance training (Cardio and Stamina)</option>
+                        <option>Body-Weight training (Calisthenics)</option>
+                    </select>
+            </div>
+
+            <button type="submit" class="button2">Create Workout Schedule</button>
+        </form>
+    </div>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</div>
+
+
+
+
+
+
