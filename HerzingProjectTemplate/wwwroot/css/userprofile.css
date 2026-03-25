@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 350px;
+    width: 550px;
     padding: 20px;
     border-radius: 20px;
     position: relative;
@@ -53,21 +53,21 @@
     position: absolute;
     left: 10px;
     top: 0px;
-    font-size: 0.9em;
+    font-size: 0.5em;
     cursor: text;
     transition: 0.3s ease;
 }
 
 .form1 label .input:placeholder-shown + span {
-    top: 12.5px;
-    font-size: 0.9em;
+    /*top: 12.5px;*/
+    font-size: 12px;
 }
 
 .form1 label .input:focus + span,
 .form1 label .input:valid + span {
     color: #00bfff;
     top: 0px;
-    font-size: 0.7em;
+    font-size: 15px;
     font-weight: 600;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .input {
-    font-size: medium;
+    font-size: small;
 }
 
 
@@ -142,5 +142,10 @@ button2:hover {
 .exercise-type-text {
     font-size: 12px;
 }
+
+
+
+
+
 
 

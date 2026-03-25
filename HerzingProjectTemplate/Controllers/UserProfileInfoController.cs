@@ -1,4 +1,5 @@
 ﻿using HerzingProjectTemplate.Models;
+using HerzingProjectTemplate.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HerzingProjectTemplate.Controllers
@@ -8,7 +9,7 @@ namespace HerzingProjectTemplate.Controllers
         [HttpGet]
         public IActionResult Input()
         {
-            return View();
+            return View(new UserProfileInfo());
         }
 
         [HttpPost]
@@ -24,8 +25,9 @@ namespace HerzingProjectTemplate.Controllers
 
             ViewBag.BMI = bmi;
 
-            return View("Result", model);
+            return View("Nutrition", model);
         }
     }
 }
+
 

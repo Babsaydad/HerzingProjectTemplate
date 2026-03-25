@@ -86,3 +86,9 @@ body {
     /* Add padding/margin so your actual content is visible */
     /* Add a semi-transparent background if needed: background-color: rgba(0, 0, 0, 0.5); */
 }
+
+.footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+}

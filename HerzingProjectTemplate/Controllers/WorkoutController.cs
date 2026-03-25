@@ -5,14 +5,6 @@ namespace HerzingProjectTemplate.Controllers
 {
     public class WorkoutController : Controller
     {
-        //[HttpGet]
-        //public IActionResult Index()
-        //{
-        //    // Initializing with an empty list avoids null reference 
-        //    // errors in some view configurations
-        //    var model = new Workout { SelectedExercises = new List<string>() };
-        //    return View(model);
-        //}
 
         [HttpGet]
         public IActionResult Index()

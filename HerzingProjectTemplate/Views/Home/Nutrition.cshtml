@@ -1,10 +1,163 @@
-﻿@{
+﻿@model HerzingProjectTemplate.Models.Nutrition
+
+@{
     ViewData["Title"] = "Nutrition";
 }
-<h1>@ViewData["Title"]</h1>
+@* <h1>@ViewData["Title"]</h1> *@
 
-<p>This can be used as a template for the required Nutrition page.</p>
+<div>
+    <h2>Your Daily Energy Needs</h2>
+
+    <p><strong>BMR:</strong> @Model.BMR</p>
+    <p><strong>TDEE:</strong> @Model.TDEE</p>
+
+  
+</div>
+
+<div class="parent_div">
+    <div>
+        <p class="niconne-regular">Create food menu for your health and fitness needs below.</p>
+    </div>
+    
+    <div class="formandtable">
+        <div class="subscribe ">
+            <p>CREATE FOOD</p>
+            <input placeholder="Food name" class="subscribe-input" name="food_name" type="text" id="user_input1">
+            <input placeholder="Calories (grams)" class="subscribe-input" name="calories" type="text" id="user_input2">
+            <input placeholder="Protein (grams)" class="subscribe-input" name="protein" type="text" id="user_input3">
+            <input placeholder="Fat (grams)" class="subscribe-input" name="fat" type="text" id="user_input4">
+            <input placeholder="Servings" class="subscribe-input" name="servings" type="text" id="user_input5">
+            <select>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+            </select>
+
+            <br>
+            <div class="submit-btn" onclick="addRow()">SUBMIT</div>
+        </div>
+
+        <div class="">
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Food Name</th>
+                        <th>Calories (g)</th>
+                        <th>Protein (g)</th>
+                        <th>Fat (g)</th>
+                        <th>Servings</th>
+                        <th>Total Row Cals</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+                <tfoot>
+                    <tr style="background-color: #eee; font-weight: bold;">
+                        <td colspan="6" style="text-align: right;">Grand Total Calories:</td>
+                        <td id="grandTotal">0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
 
 
+<script>
+// Keep track of the next ID
+let nextId = 1;
+    function addRow() {
+        const tableBody = document.getElementById('tableBody');
+
+        // Define our input IDs
+        const fields = ['user_input1', 'user_input2', 'user_input3', 'user_input4', 'user_input5'];
+        const values = {};
+
+        // 1. Capture and Validate values
+        for (let id of fields) {
+            const input = document.getElementById(id);
+            if (!input ||input.value.trim() === "") {
+            alert(`Please fill out the ${id.replace('user', '')} field.`);
+            return;
+            }
+            values[id] = input.value;
+        }
+
+        // Calculate row total: Calories * Servings
+        const rowTotal = parseFloat(values.user_input2) * parseFloat(values.user_input5);
+
+        // 2. Create the row
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${nextId++}</td>
+            <td class="data-name">${values.user_input1}</td>
+            <td class="data-email cal_val">${values.user_input2}</td>
+            <td class="data-role">${values.user_input3}</td>
+            <td class="data-role">${values.user_input4}</td>
+            <td class="data-role serv_val">${values.user_input5}</td>
+            <td class="data-role row-total">${rowTotal.toFixed(2)}</td>
+            <td class="my_actions">
+            <button onclick="editRow(this)">Edit</button>
+            <button onclick="deleteRow(this)">Delete</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+        updateGrandTotal();
+
+        // 3. Clear inputs
+        fields.forEach(id =>
+        document.getElementById(id).value = (id === 'user_input5' ? "1" :  ""));
+        }
+
+    function updateGrandTotal() {
+            const rowTotals = document.querySelectorAll('.row-total');
+            let total = 0;
+            rowTotals.forEach(cell => {
+                total += parseFloat(cell.innerText) || 0;
+            });
+            document.getElementById('grandTotal').innerText = total.toFixed(2);
+        }
+
+    function deleteRow(btn) {
+      btn.closest('tr').remove(); // A cleaner way to find the parent row
+    }
+
+    function editRow(btn) {
+      const row = btn.closest('tr');
+     // Target Name, Calories, Protein, Fat, and Servings
+            const cells = row.querySelectorAll('td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6)');
+
+      if (btn.innerText === "Edit") {
+        cells.forEach(cell => {
+          const currentText = cell.innerText;
+          cell.innerHTML = `<input type="text" value="${currentText}" style="width: 80%">`;
+        });
+        btn.innerText = "Save";
+      } else {
+        cells.forEach(cell => {
+          const input = cell.querySelector('input');
+                    if (input) {
+                        cell.innerText = input.value;
+                    }
+        });
+
+        // Recalculate this specific row's total after editing
+                const cals = parseFloat(row.cells[2].innerText);
+                const servs = parseFloat(row.cells[5].innerText);
+                row.cells[6].innerText = (cals * servs).toFixed(2);
+
+        btn.innerText = "Edit";
+        updateGrandTotal();
+      }
+    }
 
 
+</script>

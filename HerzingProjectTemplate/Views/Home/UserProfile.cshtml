@@ -3,7 +3,7 @@
 }
 
 
-
+using HerzingProjectTemplate.Services;
 @model HerzingProjectTemplate.Models.UserProfileInfo
 
 <div class="profile">
@@ -68,9 +68,12 @@
             </div>
         </div>
     </div>
+
+    
+    
     <div class="profile-container">
         
-        <form asp-action="Input" method="post" class="form1">
+        <form asp-action="Nutrition" method="post" class="form1">
             
             <div class="flex">
                 <label asp-for="FirstName" class="label">
@@ -86,24 +89,21 @@
                 </label>
             </div>
 
-            <div>
+            <div class="flex">
                 <label asp-for="Weight" class="label">
                     Weight:
                     <input asp-for="Weight" class="input" />
                     <span asp-validation-for="Weight" class="text-danger"></span>
                 </label>
-            </div>
 
-            <div>
                 <label asp-for="Height" class="label">
                     Height:
                     <input asp-for="Height" class="input" />
                     <span asp-validation-for="Height" class="text-danger"></span>
                 </label>
-            </div>
 
-            <div>
-                <label asp-for="Age" class="label">Age:
+                <label asp-for="Age" class="label">
+                    Age:
                     <input asp-for="Age" class="input" />
                 </label>
             </div>
@@ -126,8 +126,34 @@
                     </select>
             </div>
 
-            <button type="submit" class="button2">Create Workout Schedule</button>
+            <div>
+                <label asp-for="ActivityLevel" class="label">Activity Level:</label>
+                <select asp-for="ActivityLevel" class="input">
+                    <option>Sedentary</option>
+                    <option>Light</option>
+                    <option>Moderate</option>
+                    <option>Very Active</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="Goal" class="label">Goal:</label>
+                <select asp-for="Goal" class="input">
+                    <option>Lose Weight</option>
+                    <option>Maintain Weight</option>
+                    <option>Gain Weight</option>
+                </select>
+            </div>
+            <br />
+            <button type="submit" class="button2">Submit</button>
         </form>
+
+        @if (Model != null && Model.BMR > 0)
+        {
+            <h3>BMR: @Model.BMR</h3>
+            <h3>TDEE: @Model.TDEE</h3>
+        }
+
     </div>
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
